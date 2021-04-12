@@ -1,0 +1,62 @@
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-family: arial, verdana, sans-serif;
+  font-size: 40px;
+  padding: 15px;
+}
+
+.location {
+  display: none;
+  padding-top: 20px;
+  justify-content: center;
+}
+.location__vehicle {
+  border-radius: 3%;
+  width: 800px;
+  height: 800px;
+}
+
+.label {
+  display: block;
+  justify-content: center;
+}
+
+.vehicles__AudiA6 {
+  display: none;
+}
+.vehicles__Volkswagen {
+  display: none;
+}
+
+.controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 15px;
+  justify-content: center;
+}
+.controls__searchbar {
+  font-size: 30px;
+  display: block;
+  text-align: center;
+}
+.controls__search {
+  display: block;
+  margin-top: 15px;
+  font-size: 30px;
+  height: 25%;
+  width: 25%;
+}
+
+/*# sourceMappingURL=bundle.css.map*/
