@@ -10224,7 +10224,12 @@ function searchVehicle() {
 }
 
 function showLocation() {
-  car.innerHTML = "Car: " + carSearch;
+  if (carSearch == "") {
+    car.innerHTML = "You're a fucking idiot";
+  } else {
+    car.innerHTML = "Car: " + carSearch;
+  }
+
   searchBar.value = "";
   location.style.display = "flex";
 }
