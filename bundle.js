@@ -10227,7 +10227,7 @@ function onError() {
   if (carSearch == "") {
     car.innerHTML = "Error: \"Null\" is not a valid car name";
   } else {
-    car.innerHTML = "Error: " + carSearch + "is not a valid car name";
+    car.innerHTML = "Error: \"" + carSearch + "\"is not a valid car name";
   }
 
   searchBar.value = "";
