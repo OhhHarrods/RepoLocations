@@ -10225,7 +10225,7 @@ function searchVehicle() {
 
 function showLocation() {
   if (carSearch == "") {
-    car.innerHTML = "You're a fucking idiot";
+    car.innerHTML = "Error:" + "" + carSearch + "was not found!";
   } else {
     car.innerHTML = "Car: " + carSearch;
   }
