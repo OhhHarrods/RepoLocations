@@ -10219,17 +10219,23 @@ function searchVehicle() {
       } else {
         imgLocation.src = "youidiot.png";
         audio.play();
-        showLocation();
+        onError();
       }
 }
 
-function showLocation() {
+function onError() {
   if (carSearch == "") {
-    car.innerHTML = "Error:" + "" + carSearch + "was not found!";
+    car.innerHTML = "Error: \"Null\" is not a valid car name";
   } else {
-    car.innerHTML = "Car: " + carSearch;
+    car.innerHTML = "Error: " + carSearch + "is not a valid car name";
   }
 
+  searchBar.value = "";
+  location.style.display = "flex";
+}
+
+function showLocation() {
+  car.innerHTML = "Car: " + carSearch;
   searchBar.value = "";
   location.style.display = "flex";
 }
