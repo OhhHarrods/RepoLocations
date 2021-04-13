@@ -10302,7 +10302,7 @@ function suggestedSearch(carsArray) {
   var html = !carsArray.length ? '' : carsArray.join('');
   console.log(html.length);
 
-  if (html.length > 100) {
+  if (html.length > 150) {
     document.querySelector('ul').innerHTML = "";
   } else {
     document.querySelector('ul').innerHTML = html;
