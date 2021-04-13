@@ -10298,6 +10298,17 @@ function showLocation() {
   location.style.display = "flex";
 }
 
+function suggestedSearch(carsArray) {
+  var html = !carsArray.length ? '' : carsArray.join('');
+  console.log(html.length);
+
+  if (html.length > 100) {
+    document.querySelector('ul').innerHTML = "";
+  } else {
+    document.querySelector('ul').innerHTML = html;
+  }
+}
+
 function main() {
   // setup references 
   audio = new Audio('idiot.mp3');
@@ -10320,19 +10331,7 @@ function main() {
 
     suggestedSearch(carsArray);
     console.log(carsArray);
-  });
-
-  function suggestedSearch(carsArray) {
-    var html = !carsArray.length ? '' : carsArray.join('');
-    console.log(html.length);
-
-    if (html.length > 100) {
-      document.querySelector('ul').innerHTML = "";
-    } else {
-      document.querySelector('ul').innerHTML = html;
-    }
-  } // setup event listeners
-
+  }); // setup event listeners
 
   btnSearch.addEventListener("click", searchVehicle); // enter key search
 
