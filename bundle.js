@@ -10349,6 +10349,7 @@ function main() {
     if (!e.target.innerHTML.includes("<li>")) {
       searchBar.value = e.target.innerHTML;
       carOptions.style.display = "none";
+      searchVehicle();
     }
   });
 }
