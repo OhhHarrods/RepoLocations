@@ -10326,7 +10326,7 @@ function main() {
 
     if (e.target.value) {
       carsArray = cars.filter(function (cars) {
-        return cars.toLowerCase().includes(e.target.value);
+        return cars.toLowerCase().includes(e.target.value.toLowerCase());
       });
       carsArray = carsArray.map(function (cars) {
         return "<li>".concat(cars, "</li>");
