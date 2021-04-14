@@ -10044,6 +10044,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sass_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../sass/styles.scss */ "./sass/styles.scss");
 // importing the sass stylesheet for bundling
+// Created by: Harrods
 
 var searchBar;
 var btnSearch;
@@ -10320,6 +10321,7 @@ function main() {
   carOptions = document.getElementById("carOptions");
   btnSearch = document.getElementById("btnSearch");
   searchBar.addEventListener("input", function (e) {
+    carOptions.style.display = "block";
     var carsArray = [];
 
     if (e.target.value) {
@@ -10345,6 +10347,7 @@ function main() {
   });
   carOptions.addEventListener("click", function (e) {
     searchBar.value = e.target.innerHTML;
+    carOptions.style.display = "none";
   });
 }
 
