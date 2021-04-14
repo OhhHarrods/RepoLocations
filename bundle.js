@@ -10346,8 +10346,10 @@ function main() {
     }
   });
   carOptions.addEventListener("click", function (e) {
-    searchBar.value = e.target.innerHTML;
-    carOptions.style.display = "none";
+    if (!e.target.innerHTML.includes("<li>")) {
+      searchBar.value = e.target.innerHTML;
+      carOptions.style.display = "none";
+    }
   });
 }
 
