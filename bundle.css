@@ -6,52 +6,66 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   color: #000000;
   font-family: arial, verdana, sans-serif;
   font-size: 40px;
   padding: 15px;
 }
 
+.title {
+  padding-left: 10px;
+}
+@media screen and (max-width:650px) {
+  .title {
+    padding-left: 0px;
+  }
+}
+
 .location {
-  display: none;
+  padding-left: 10px;
   padding-top: 20px;
-  justify-content: center;
 }
 .location__vehicle {
+  display: none;
   border-radius: 3%;
-  width: 800px;
-  height: 800px;
+  width: 50%;
+  height: 50%;
 }
-
-.label {
-  display: block;
-  justify-content: center;
+.location__label {
+  display: inline-block;
+  padding-bottom: 5px;
 }
-
-.vehicles__AudiA6 {
-  display: none;
-}
-.vehicles__Volkswagen {
-  display: none;
+@media screen and (max-width:650px) {
+  .location__vehicle {
+    width: 90%;
+    height: 90%;
+  }
 }
 
 li {
+  display: inline-block;
   background-color: white;
   cursor: pointer;
   border: 2px solid black;
-  padding: 10px;
   list-style-type: none;
-  margin: 0 0 5px 0;
+  margin: 10px 0 0 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 li:hover {
   background-color: #9f9fd6;
 }
 
-ul {
-  justify-content: right;
+.options {
+  padding-left: 0px;
+  margin: 0 0 3px 0;
+  display: inline-block;
+  justify-content: left;
   font-size: 16px;
 }
 
@@ -61,20 +75,29 @@ ul {
   display: -webkit-flex;
   display: flex;
   flex-wrap: wrap;
+  padding-left: 10px;
   padding-top: 15px;
-  justify-content: center;
+  justify-content: left;
 }
 .controls__searchbar {
   font-size: 30px;
   display: block;
-  text-align: center;
+  text-align: left;
+  padding-left: 1%;
 }
 .controls__search {
-  display: block;
-  margin-top: 15px;
+  margin: 0 0 0 10px;
+  display: inline-block;
   font-size: 30px;
-  height: 25%;
-  width: 25%;
+}
+@media screen and (max-width:650px) {
+  .controls {
+    padding-left: 0px;
+  }
+  .controls__search {
+    margin-top: 10px;
+    margin-left: 0px;
+  }
 }
 
 /*# sourceMappingURL=bundle.css.map*/

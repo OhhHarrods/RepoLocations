@@ -10315,7 +10315,7 @@ function main() {
   // setup references 
   audio = new Audio('idiot.mp3');
   car = document.getElementById("car");
-  location = document.getElementById("location");
+  location = document.getElementById("imgLocation");
   imgLocation = document.getElementById("imgLocation");
   searchBar = document.getElementById("searchBar");
   carOptions = document.getElementById("carOptions");
