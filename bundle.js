@@ -10149,7 +10149,7 @@ function searchVehicle() {
     imgLocation.src = "Challenger.png";
     showLocation();
     window.alert("there are two challengers, if you're looking for the 2016 Dodge Challenger in La Puerta / Bay city Ave please search '2016 Challenger'");
-  } else if (carSearch == "2016challenger") {
+  } else if (carSearch == "2016challenger" || carSearch == "2016dodgechallenger") {
     carName = "2016 Dodge Challenger";
     imgLocation.src = "2016Challenger.png";
     showLocation();
