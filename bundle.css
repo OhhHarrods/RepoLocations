@@ -3,6 +3,8 @@ body {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  background-image: url("https://media.giphy.com/media/2tNvsKkc0qFdNhJmKk/giphy.gif");
+  background-size: cover;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -12,7 +14,6 @@ body {
   font-family: sans-serif;
   font-size: 40px;
   padding: 15px;
-  background-color: rgba(34, 69, 143, 0.514);
 }
 
 .title {
