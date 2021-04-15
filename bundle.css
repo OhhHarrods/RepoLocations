@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "NFS";
+  src: url("https://github.com/OhhHarrods/RepoLocations/blob/main/NFS.ttf");
+  src: url("/NFS.ttf");
+}
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -17,7 +22,7 @@ body {
 
 .title {
   padding-left: 10px;
-  font-family: sans-serif;
+  font-family: "NFS";
 }
 @media screen and (max-width:650px) {
   .title {
