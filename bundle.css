@@ -1,6 +1,6 @@
 @font-face {
   font-family: "NFS";
-  src: url("https://ohhharrods.github.io/RepoLocations/NFS.ttf");
+  src: url(/fonts/NFS.ttf);
   src: url("/NFS.ttf");
 }
 body {
