@@ -24,6 +24,19 @@ body {
   }
 }
 
+.suggestion {
+  display: flex;
+  font-size: 18px;
+  position: fixed;
+  flex-wrap: wrap;
+  width: 10%;
+  height: 5%;
+  right: 0px;
+  bottom: 0px;
+  padding: 5px;
+  text-decoration: underline;
+}
+
 .location {
   padding-left: 10px;
   padding-top: 20px;
