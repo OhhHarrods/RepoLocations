@@ -25,35 +25,12 @@ body {
   }
 }
 
-.suggestion {
-  display: flex;
-  font-size: 18px;
-  position: fixed;
-  flex-wrap: wrap;
-  width: 10%;
-  height: 5%;
-  right: 0px;
-  bottom: 0px;
-  padding: 5px;
-  text-decoration: underline;
-}
-
-.credits {
-  display: flex;
-  font-size: 18px;
-  position: fixed;
-  flex-wrap: wrap;
-  width: 10%;
-  height: 5%;
-  right: 0px;
-  top: 0px;
-  padding: 5px;
-  text-decoration: underline;
-}
-
 .location {
+  display: flex;
+  flex-direction: column;
   padding-left: 10px;
   padding-top: 20px;
+  padding-bottom: 5px;
 }
 .location__vehicle {
   display: none;
@@ -70,6 +47,18 @@ body {
     width: 90%;
     height: 90%;
   }
+}
+
+.suggestion {
+  display: flex;
+  font-size: 18px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 5px;
+  text-decoration: underline;
+}
+.suggestion__message {
+  padding-top: 5px;
 }
 
 li {
