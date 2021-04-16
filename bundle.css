@@ -15,6 +15,13 @@ body {
   font-size: 40px;
   padding: 15px;
 }
+@media screen and (max-width:650px) {
+  body {
+    background-color: #7ac1e2;
+    background-image: url("");
+    padding: 5px;
+  }
+}
 
 .title {
   padding-left: 10px;
@@ -109,7 +116,6 @@ li:hover {
 .controls__search {
   font-family: sans-serif;
   margin: 0 0 0 5px;
-  display: inline-block;
   font-size: 30px;
   border-radius: 5px;
   padding-right: 13px;
@@ -120,6 +126,7 @@ li:hover {
 }
 @media screen and (max-width:650px) {
   .controls {
+    padding-top: 0px;
     padding-left: 0px;
   }
   .controls__search {
