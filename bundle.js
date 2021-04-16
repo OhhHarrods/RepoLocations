@@ -10303,12 +10303,8 @@ function showLocation() {
 function suggestedSearch(carsArray) {
   var html = !carsArray.length ? '' : carsArray.join('');
   console.log(html.length);
-
-  if (html.length > 150) {
-    document.querySelector('ul').innerHTML = "";
-  } else {
-    document.querySelector('ul').innerHTML = html;
-  }
+  document.querySelector('ul').style.width == searchBar.style.width;
+  document.querySelector('ul').innerHTML = html;
 }
 
 function main() {
@@ -10326,7 +10322,7 @@ function main() {
 
     if (e.target.value) {
       carsArray = cars.filter(function (cars) {
-        return cars.toLowerCase().includes(e.target.value.toLowerCase());
+        return cars.toLowerCase().startsWith(e.target.value.toLowerCase());
       });
       carsArray = carsArray.map(function (cars) {
         return "<li>".concat(cars, "</li>");
