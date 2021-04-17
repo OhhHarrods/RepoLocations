@@ -10047,6 +10047,7 @@ __webpack_require__.r(__webpack_exports__);
 // Created by: Harrods
 
 var searchBar;
+var photoSwitch;
 var btnSearch;
 var carSearch;
 var location;
@@ -10311,6 +10312,7 @@ function main() {
   // setup references 
   audio = new Audio('idiot.mp3');
   car = document.getElementById("car");
+  photoSwitch = document.querySelector('input[type="checkbox"]');
   location = document.getElementById("imgLocation");
   imgLocation = document.getElementById("imgLocation");
   searchBar = document.getElementById("searchBar");
@@ -10331,6 +10333,13 @@ function main() {
 
     suggestedSearch(carsArray);
     console.log(carsArray);
+  });
+  photoSwitch.addEventListener("change", function () {
+    if (photoSwitch.checked) {
+      imgLocation.src = imgLocation.src.replace(".png", "ingame.png");
+    } else {
+      imgLocation.src = imgLocation.src.replace("ingame.png", ".png");
+    }
   }); // setup event listeners
 
   btnSearch.addEventListener("click", searchVehicle); // enter key search
