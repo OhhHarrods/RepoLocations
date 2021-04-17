@@ -21353,7 +21353,6 @@ function searchVehicle() {
       carName = "Lamborghini Centenario";
       imgLocation.src = "LamborghiniCentenario.png";
       showLocation();
-      window.alert("This repo might fail");
       window.alert("!This car requires a code grabber!");
     } else if (carSearch == "ferrarilaferrari" || carSearch == "laferrari") {
       carName = "Ferrari LaFerrari";
