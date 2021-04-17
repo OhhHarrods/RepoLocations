@@ -21159,6 +21159,7 @@ var car;
 var carName;
 var carOptions;
 var loadingOverlay;
+var carsArray;
 var cars = ["Audi A6", "Volkswagen Touareg R50", "Audi S8", "Apollo S", "Ford GT", "2007 Hyundai Elantra", "Ducati 999", "Ducati Elysian", "T-Max 530", "Ford GT40", "BMW 750IL", "2020 Porsche Speedster", "Ferrari 812 Superfast", "Porsche Cayman GT4", "2016 Dodge Charger", "Holden Monaro", "W202", "FZ50", "Peugeot 406", "KTM EXC530", "Challenger", "2016 Dodge Challenger", "2018 RS3", "Mercedes S65 AMG", "Ford Explorer ST", "Hyundai i30N", "W201", "nissantitan17", "Nissan GTR R35", "Ford Festiva", "Nissan Patrol Safari", "1952 Hudson Hornet", "Mercedes Unimog", "Chevy Blazer K5", "1990 Chevy Camaro", "Suzuki Hayabusa", "Renault Twingo", "Genesis Coupe", "Alfa Romeo Giulia", "2018 Ford Mustang GT", "Lamborghini Murcielago", "Aston Martin Vanquish", "Lamborghini Centenario", "Ferrari LaFerrari", "Porsche 911R", "Lexus LFA", "Chiron Super Sport", "Yamaha YZF450R", "Alumicraft Class 10"];
 var spinner = new spin_js__WEBPACK_IMPORTED_MODULE_1__["Spinner"]({
   color: '#89CFF0',
@@ -21404,6 +21405,7 @@ function onError() {
 }
 
 function showLocation() {
+  document.querySelector("ul").innerHTML = "";
   checkPhoto();
   car.innerHTML = "Car: " + carName;
   searchBar.value = "";
@@ -21432,6 +21434,23 @@ function checkPhoto() {
   }
 }
 
+function searchOptions(e) {
+  carOptions.style.display = "block";
+  carsArray = [];
+
+  if (e.target.value) {
+    carsArray = cars.filter(function (cars) {
+      return cars.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    carsArray = carsArray.map(function (cars) {
+      return "<li>".concat(cars, "</li>");
+    });
+  }
+
+  suggestedSearch(carsArray);
+  console.log(carsArray);
+}
+
 function main() {
   // setup references 
   loadingOverlay = document.querySelector(".loading-overlay");
@@ -21442,25 +21461,10 @@ function main() {
   imgLocation = document.getElementById("imgLocation");
   searchBar = document.getElementById("searchBar");
   carOptions = document.getElementById("carOptions");
-  btnSearch = document.getElementById("btnSearch");
-  searchBar.addEventListener("input", function (e) {
-    carOptions.style.display = "block";
-    var carsArray = [];
+  btnSearch = document.getElementById("btnSearch"); // setup event listeners
 
-    if (e.target.value) {
-      carsArray = cars.filter(function (cars) {
-        return cars.toLowerCase().includes(e.target.value.toLowerCase());
-      });
-      carsArray = carsArray.map(function (cars) {
-        return "<li>".concat(cars, "</li>");
-      });
-    }
-
-    suggestedSearch(carsArray);
-    console.log(carsArray);
-  });
-  photoSwitch.addEventListener("change", checkPhoto); // setup event listeners
-
+  searchBar.addEventListener("input", searchOptions);
+  photoSwitch.addEventListener("change", checkPhoto);
   btnSearch.addEventListener("click", searchVehicle); // enter key search
 
   searchBar.addEventListener("keyup", function (event) {
