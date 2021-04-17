@@ -10307,7 +10307,12 @@ function suggestedSearch(carsArray) {
   var html = !carsArray.length ? '' : carsArray.join('');
   console.log(html.length);
   document.querySelector('ul').style.width == searchBar.style.width;
-  document.querySelector('ul').innerHTML = html;
+
+  if (html.length > 300) {
+    document.querySelector('ul').innerHTML = "";
+  } else {
+    document.querySelector('ul').innerHTML = html;
+  }
 }
 
 function checkPhoto() {
@@ -10334,7 +10339,7 @@ function main() {
 
     if (e.target.value) {
       carsArray = cars.filter(function (cars) {
-        return cars.toLowerCase().startsWith(e.target.value.toLowerCase());
+        return cars.toLowerCase().includes(e.target.value.toLowerCase());
       });
       carsArray = carsArray.map(function (cars) {
         return "<li>".concat(cars, "</li>");
