@@ -10296,6 +10296,7 @@ function onError() {
 }
 
 function showLocation() {
+  checkPhoto();
   car.innerHTML = "Car: " + carName;
   searchBar.value = "";
   location.style.display = "flex";
@@ -10306,6 +10307,14 @@ function suggestedSearch(carsArray) {
   console.log(html.length);
   document.querySelector('ul').style.width == searchBar.style.width;
   document.querySelector('ul').innerHTML = html;
+}
+
+function checkPhoto() {
+  if (photoSwitch.checked) {
+    imgLocation.src = imgLocation.src.replace(".png", "ingame.png");
+  } else {
+    imgLocation.src = imgLocation.src.replace("ingame.png", ".png");
+  }
 }
 
 function main() {
@@ -10334,13 +10343,7 @@ function main() {
     suggestedSearch(carsArray);
     console.log(carsArray);
   });
-  photoSwitch.addEventListener("change", function () {
-    if (photoSwitch.checked) {
-      imgLocation.src = imgLocation.src.replace(".png", "ingame.png");
-    } else {
-      imgLocation.src = imgLocation.src.replace("ingame.png", ".png");
-    }
-  }); // setup event listeners
+  photoSwitch.addEventListener("change", checkPhoto); // setup event listeners
 
   btnSearch.addEventListener("click", searchVehicle); // enter key search
 
