@@ -10060,6 +10060,7 @@ var cars = ["Audi A6", "Volkswagen Touareg R50", "Audi S8", "Apollo S", "Ford GT
 
 function searchVehicle() {
   location.style.display = "none";
+  carOptions.style.display = "none";
   carSearch = document.getElementsByTagName("input")[0].value; // getting rid of all spaces, special chars, and all capitol letters
 
   carSearch = carSearch.replace(/[\W,\s]/g, '').toLowerCase(); // non code grabbers
@@ -10356,7 +10357,6 @@ function main() {
   carOptions.addEventListener("click", function (e) {
     if (!e.target.innerHTML.includes("<li>")) {
       searchBar.value = e.target.innerHTML;
-      carOptions.style.display = "none";
       searchVehicle();
     }
   });
