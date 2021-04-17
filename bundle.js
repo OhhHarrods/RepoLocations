@@ -21283,11 +21283,12 @@ function searchVehicle() {
   } else if (carSearch == "w201" || carSearch == "201" || carSearch == "nissantitan17" || carSearch == "nissantitan" || carSearch == "titan" || carSearch == "titan17") {
     if (carSearch == "w201" || carSearch == "201") {
       carName = "W201";
+      imgLocation.src = "W201.png";
     } else {
       carName = "nissantitan17";
+      imgLocation.src = "nissantitan17.png";
     }
 
-    imgLocation.src = "W201.png";
     showLocation();
   } else if (carSearch == "nissangtrr35" || carSearch == "nissangtr" || carSearch == "gtrr35" || carSearch == "r35" || carSearch == "gtr") {
     carName = "Nissan GTR R35";
