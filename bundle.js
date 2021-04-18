@@ -21395,7 +21395,7 @@ function searchVehicle() {
         window.alert("!ThIS REPO IS BROKEN!");
       } else {
         imgLocation.src = "youidiot.png";
-        audio.play();
+        loadingOverlay.style.display = "block";
         onError();
       }
 }
@@ -21409,6 +21409,8 @@ function onError() {
 
   searchBar.value = "";
   location.style.display = "flex";
+  load();
+  audio.play();
 }
 
 function showLocation() {
@@ -21417,9 +21419,7 @@ function showLocation() {
   car.innerHTML = "Car: " + carName;
   searchBar.value = "";
   location.style.display = "flex";
-  window.addEventListener("load", function () {
-    loadingOverlay.style.display = "none";
-  });
+  load();
 }
 
 function suggestedSearch(carsArray) {
@@ -21442,6 +21442,8 @@ function checkPhoto() {
   } else {
     imgLocation.src = imgLocation.src.replace("ingame.png", ".png");
   }
+
+  load();
 }
 
 function searchOptions(e) {
@@ -21459,6 +21461,15 @@ function searchOptions(e) {
 
   suggestedSearch(carsArray);
   console.log(carsArray);
+}
+
+function load() {
+  window.addEventListener("load", function () {
+    loadingOverlay.style.display = "none";
+  });
+  imgLocation.addEventListener("load", function () {
+    loadingOverlay.style.display = "none";
+  });
 }
 
 function main() {
@@ -21489,12 +21500,7 @@ function main() {
       searchVehicle();
     }
   });
-  window.addEventListener("load", function () {
-    loadingOverlay.style.display = "none";
-  });
-  imgLocation.addEventListener("load", function () {
-    loadingOverlay.style.display = "none";
-  });
+  load();
 }
 
 main();
