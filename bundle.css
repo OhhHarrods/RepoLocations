@@ -18,10 +18,9 @@ body {
   display: flex;
   background-image: url("https://media.giphy.com/media/2tNvsKkc0qFdNhJmKk/giphy.gif");
   background-size: cover;
-  display: flex;
+  display: block;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: left;
   justify-content: left;
   color: #000000;
   font-family: sans-serif;
@@ -44,6 +43,10 @@ body {
   .title {
     padding-left: 0px;
   }
+}
+
+.credits {
+  font-size: 25px;
 }
 
 .location {
