@@ -21162,11 +21162,18 @@ var loadingOverlay;
 var carsArray;
 var cars = ["Audi A6", "Volkswagen Touareg R50", "Audi S8", "Apollo S", "Ford GT", "2007 Hyundai Elantra", "Ducati 999", "Ducati Elysian", "T-Max 530", "Ford GT40", "BMW 750IL", "2020 Porsche Speedster", "Ferrari 812 Superfast", "Porsche Cayman GT4", "2016 Dodge Charger", "Holden Monaro", "W202", "FZ50", "Peugeot 406", "KTM EXC530", "Challenger", "2016 Dodge Challenger", "2018 RS3", "Mercedes S65 AMG", "Ford Explorer ST", "Hyundai i30N", "W201", "nissantitan17", "Nissan GTR R35", "Ford Festiva", "Nissan Patrol Safari", "1952 Hudson Hornet", "Mercedes Unimog", "Chevy Blazer K5", "1990 Chevy Camaro", "Suzuki Hayabusa", "Renault Twingo", "Genesis Coupe", "Alfa Romeo Giulia", "2018 Ford Mustang GT", "Lamborghini Murcielago", "Aston Martin Vanquish", "Lamborghini Centenario", "Ferrari LaFerrari", "Porsche 911R", "Lexus LFA", "Chiron Super Sport", "Yamaha YZF450R", "Alumicraft Class 10"];
 var spinner = new spin_js__WEBPACK_IMPORTED_MODULE_1__["Spinner"]({
-  color: '#89CFF0',
+  trail: 100,
+  width: 5,
+  length: 7,
+  shadow: true,
+  radius: 10,
+  speed: 1,
+  color: '#000000',
   lines: 12
 }).spin(document.querySelectorAll(".loading-overlay")[0]);
 
 function searchVehicle() {
+  loadingOverlay.style.display = "block";
   location.style.display = "none";
   carOptions.style.display = "none";
   carSearch = document.getElementsByTagName("input")[0].value; // getting rid of all spaces, special chars, and all capitol letters
@@ -21410,6 +21417,9 @@ function showLocation() {
   car.innerHTML = "Car: " + carName;
   searchBar.value = "";
   location.style.display = "flex";
+  window.addEventListener("load", function () {
+    loadingOverlay.style.display = "none";
+  });
 }
 
 function suggestedSearch(carsArray) {
@@ -21479,7 +21489,12 @@ function main() {
       searchVehicle();
     }
   });
-  loadingOverlay.style.display = "none";
+  window.addEventListener("load", function () {
+    loadingOverlay.style.display = "none";
+  });
+  imgLocation.addEventListener("load", function () {
+    loadingOverlay.style.display = "none";
+  });
 }
 
 main();

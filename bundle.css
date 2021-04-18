@@ -8,14 +8,7 @@
   overflow: show;
   margin: auto;
   display: block;
-  background-image: url("https://media.giphy.com/media/2tNvsKkc0qFdNhJmKk/giphy.gif");
-}
-@media screen and (max-width:650px) {
-  .loading-overlay {
-    background-color: #7ac1e2;
-    background-image: url("");
-    padding: 5px;
-  }
+  background-color: #7ac1e2;
 }
 
 body {
