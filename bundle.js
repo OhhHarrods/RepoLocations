@@ -21152,7 +21152,6 @@ var searchBar;
 var photoSwitch;
 var btnSearch;
 var carSearch;
-var location;
 var imgLocation;
 var audio;
 var car;
@@ -21160,8 +21159,6 @@ var carName;
 var carOptions;
 var loadingOverlay;
 var carsArray;
-var btnCredits;
-var searchCounter;
 var i;
 var cars = ["Audi A6", "Volkswagen Touareg R50", "Audi S8", "Apollo S", "Ford GT", "2007 Hyundai Elantra", "Ducati 999", "Ducati Elysian", "T-Max 530", "Ford GT40", "BMW 750IL", "2020 Porsche Speedster", "Ferrari 812 Superfast", "Porsche Cayman GT4", "2016 Dodge Charger", "Holden Monaro", "W202", "FZ50", "Peugeot 406", "KTM EXC530", "Challenger", "2016 Dodge Challenger", "2018 RS3", "Mercedes S65 AMG", "Ford Explorer ST", "Hyundai i30N", "W201", "nissantitan17", "Nissan GTR R35", "Ford Festiva", "Nissan Patrol Safari", "1952 Hudson Hornet", "Mercedes Unimog", "Chevy Blazer K5", "1990 Chevy Camaro", "Suzuki Hayabusa", "Renault Twingo", "Genesis Coupe", "Alfa Romeo Giulia", "2018 Ford Mustang GT", "Lamborghini Murcielago", "Aston Martin Vanquish", "Lamborghini Centenario", "Ferrari LaFerrari", "Porsche 911R", "Lexus LFA", "Chiron Super Sport", "Yamaha YZF450R", "Alumicraft Class 10"];
 var spinner = new spin_js__WEBPACK_IMPORTED_MODULE_1__["Spinner"]({
@@ -21173,13 +21170,13 @@ var spinner = new spin_js__WEBPACK_IMPORTED_MODULE_1__["Spinner"]({
   speed: 1,
   color: '#000000',
   lines: 12
-}).spin(document.querySelectorAll(".loading-overlay")[0]);
+}).spin(document.querySelectorAll(".loading-overlay")[0]); // all vehicles that can be searched
 
 function searchVehicle() {
   i = 0;
   carsArray = "";
   loadingOverlay.style.display = "block";
-  location.style.display = "none";
+  imgLocation.style.display = "none";
   carOptions.style.display = "none";
   carSearch = document.getElementsByTagName("input")[0].value; // getting rid of all spaces, special chars, and all capitol letters
 
@@ -21403,7 +21400,8 @@ function searchVehicle() {
         loadingOverlay.style.display = "block";
         onError();
       }
-}
+} // checking for possible search errors
+
 
 function onError() {
   if (carSearch == "") {
@@ -21416,28 +21414,31 @@ function onError() {
   location.style.display = "flex";
   load();
   audio.play();
-}
+} // showing the img of the car location that was searched
+
 
 function showLocation() {
   document.querySelector("ul").innerHTML = "";
   checkPhoto();
   car.innerHTML = "Car: " + carName;
   searchBar.value = "";
-  location.style.display = "flex";
+  imgLocation.style.display = "flex";
   load();
-}
+} // creating search options
+
 
 function suggestedSearch(carsArray) {
   var html = !carsArray.length ? '' : carsArray.join('');
   console.log(html.length);
-  document.querySelector('ul').style.width == searchBar.style.width;
+  document.querySelector('ul').style.width = searchBar.style.width;
 
   if (html.length > 300) {
     document.querySelector('ul').innerHTML = "";
   } else {
     document.querySelector('ul').innerHTML = html;
   }
-}
+} // checking if the in game / map switch has been toggled on/off
+
 
 function checkPhoto() {
   imgLocation.loading = "lazy";
@@ -21449,7 +21450,8 @@ function checkPhoto() {
   }
 
   load();
-}
+} // displaying all worthy search options based on entered text
+
 
 function searchOptions(e) {
   carOptions.style.display = "block";
@@ -21466,7 +21468,8 @@ function searchOptions(e) {
 
   suggestedSearch(carsArray);
   console.log(carsArray);
-}
+} // somewhat working loading screen 
+
 
 function load() {
   window.addEventListener("load", function () {
@@ -21484,7 +21487,6 @@ function main() {
   audio = new Audio('idiot.mp3');
   car = document.getElementById("car");
   photoSwitch = document.querySelector('input[type="checkbox"]');
-  location = document.getElementById("imgLocation");
   imgLocation = document.getElementById("imgLocation");
   searchBar = document.getElementById("searchBar");
   carOptions = document.getElementById("carOptions");
@@ -21494,12 +21496,12 @@ function main() {
   photoSwitch.addEventListener("change", checkPhoto);
   btnSearch.addEventListener("click", searchVehicle); // enter key search
 
-  searchBar.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      btnSearch.click();
-    } else if (event.key === "ArrowDown") {
-      event.preventDefault();
+  searchBar.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      btnSearch.click(); // barely allowing the user to scroll threw search options and giving no visual key other than the text changing in the input block
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
 
       if (searchBar.value != "") {
         searchBar.value = carsArray[i].replace("<li>", "").replace("</li>", "");
@@ -21510,8 +21512,8 @@ function main() {
           searchBar.value = carsArray[i].replace("<li>", "").replace("</li>", "");
         }
       }
-    } else if (event.key === "ArrowUp") {
-      event.preventDefault();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
 
       if (searchBar.value != "") {
         i--;
@@ -21523,7 +21525,8 @@ function main() {
         }
       }
     }
-  });
+  }); // allowing the user to click search options
+
   carOptions.addEventListener("click", function (e) {
     if (!e.target.innerHTML.includes("<li>")) {
       searchBar.value = e.target.innerHTML;
