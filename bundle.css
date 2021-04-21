@@ -233,4 +233,8 @@ input.cmn-toggle-round:checked + label:after {
   margin-left: 60px;
 }
 
+.preloading {
+  display: none;
+}
+
 /*# sourceMappingURL=bundle.css.map*/
