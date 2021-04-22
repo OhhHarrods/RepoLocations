@@ -10392,7 +10392,7 @@ var carName;
 var carOptions;
 var loadingOverlay;
 var carsArray;
-var i;
+var optionCounter;
 var cars = ["Audi A6", "Volkswagen Touareg R50", "Audi S8", "Apollo S", "Ford GT", "2007 Hyundai Elantra", "Ducati 999", "Ducati Elysian", "T-Max 530", "Ford GT40", "BMW 750IL", "2020 Porsche Speedster", "Ferrari 812 Superfast", "Porsche Cayman GT4", "2016 Dodge Charger", "Holden Monaro", "W202", "FZ50", "Peugeot 406", "KTM EXC530", "Challenger", "2016 Dodge Challenger", "2018 RS3", "Mercedes S65 AMG", "Ford Explorer ST", "Hyundai i30N", "W201", "nissantitan17", "Nissan GTR R35", "Ford Festiva", "Nissan Patrol Safari", "1952 Hudson Hornet", "Mercedes Unimog", "Chevy Blazer K5", "1990 Chevy Camaro", "Suzuki Hayabusa", "Renault Twingo", "Genesis Coupe", "Alfa Romeo Giulia", "2018 Ford Mustang GT", "Lamborghini Murcielago", "Aston Martin Vanquish", "Lamborghini Centenario", "Ferrari LaFerrari", "Porsche 911R", "Lexus LFA", "Chiron Super Sport", "Yamaha YZF450R", "Alumicraft Class 10"];
 var spinner = new spin_js__WEBPACK_IMPORTED_MODULE_1__["Spinner"]({
   trail: 100,
@@ -10406,7 +10406,7 @@ var spinner = new spin_js__WEBPACK_IMPORTED_MODULE_1__["Spinner"]({
 }).spin(document.querySelectorAll(".loading-overlay")[0]); // all vehicles that can be searched
 
 function searchVehicle() {
-  i = 0;
+  optionCounter = 0;
   carsArray = "";
   loadingOverlay.style.display = "block";
   imgLocation.style.display = "none";
@@ -10715,7 +10715,7 @@ function load() {
 
 function main() {
   // setup references
-  var i = 0;
+  optionCounter = 0;
   loadingOverlay = document.querySelector(".loading-overlay");
   audio = new Audio('idiot.mp3');
   car = document.getElementById("car");
@@ -10736,25 +10736,25 @@ function main() {
     if (e.code === "ArrowDown") {
       e.preventDefault();
 
-      if (searchBar.value != "") {
-        searchBar.value = carsArray[i].replace("<li>", "").replace("</li>", "");
-        i++;
+      if (searchBar.value != "" && carsArray.length != 0 && carOptions.style.display != "none") {
+        searchBar.value = carsArray[optionCounter].replace("<li>", "").replace("</li>", "");
+        optionCounter++;
 
-        if (i == carsArray.length) {
-          i = carsArray.length - 1;
-          searchBar.value = carsArray[i].replace("<li>", "").replace("</li>", "");
+        if (optionCounter == carsArray.length) {
+          optionCounter = carsArray.length - 1;
+          searchBar.value = carsArray[optionCounter].replace("<li>", "").replace("</li>", "");
         }
       }
     } else if (e.code === "ArrowUp") {
       e.preventDefault();
 
-      if (searchBar.value != "") {
-        i--;
-        searchBar.value = carsArray[i].replace("<li>", "").replace("</li>", "");
+      if (searchBar.value != "" && carsArray.length != 0 && carOptions.style.display != "none") {
+        optionCounter--;
+        searchBar.value = carsArray[optionCounter].replace("<li>", "").replace("</li>", "");
 
-        if (i == carsArray.length - carsArray.length) {
-          searchBar.value = carsArray[i].replace("<li>", "").replace("</li>", "");
-          i = 1;
+        if (optionCounter == carsArray.length - carsArray.length) {
+          searchBar.value = carsArray[optionCounter].replace("<li>", "").replace("</li>", "");
+          optionCounter = 1;
         }
       }
     }
