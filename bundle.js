@@ -10393,7 +10393,10 @@ var carOptions;
 var loadingOverlay;
 var carsArray;
 var optionCounter;
-var downCounter;
+var lastResortCar;
+var userError;
+var brokenRepos = ["Yamaha YZF450R", "Alumicraft Class 10"];
+var codeGrabbers = ["Lamborghini Murcielago", "Aston Martin Vanquish", "Lamborghini Centenario", "Ferrari LaFerrari", "Porsche 911R", "Lexus LFA", "Chiron Super Sport"];
 var cars = ["Audi A6", "Volkswagen Touareg R50", "Audi S8", "Apollo S", "Ford GT", "2007 Hyundai Elantra", "Ducati 999", "Ducati Elysian", "T-Max 530", "Ford GT40", "BMW 750IL", "2020 Porsche Speedster", "Ferrari 812 Superfast", "Porsche Cayman GT4", "2016 Dodge Charger", "Holden Monaro", "W202", "FZ50", "Peugeot 406", "KTM EXC530", "Challenger", "2016 Dodge Challenger", "2018 RS3", "Mercedes S65 AMG", "Ford Explorer ST", "Hyundai i30N", "W201", "nissantitan17", "Nissan GTR R35", "Ford Festiva", "Nissan Patrol Safari", "1952 Hudson Hornet", "Mercedes Unimog", "Chevy Blazer K5", "1990 Chevy Camaro", "Suzuki Hayabusa", "Renault Twingo", "Genesis Coupe", "Alfa Romeo Giulia", "2018 Ford Mustang GT", "Lamborghini Murcielago", "Aston Martin Vanquish", "Lamborghini Centenario", "Ferrari LaFerrari", "Porsche 911R", "Lexus LFA", "Chiron Super Sport", "Yamaha YZF450R", "Alumicraft Class 10"];
 var spinner = new spin_js__WEBPACK_IMPORTED_MODULE_1__["Spinner"]({
   trail: 100,
@@ -10412,230 +10415,38 @@ function searchVehicle() {
   loadingOverlay.style.display = "block";
   imgLocation.style.display = "none";
   carOptions.style.display = "none";
-  carSearch = document.getElementsByTagName("input")[0].value; // getting rid of all spaces, special chars, and all capitol letters
+  carSearch = document.getElementsByTagName("input")[0].value;
 
-  carSearch = carSearch.replace(/[\W,\s]/g, '').toLowerCase(); // non code grabbers
-
-  if (carSearch == "audia6" || carSearch == "a6") {
-    carName = "Audi A6";
-    imgLocation.src = "AudiA6.png";
+  if (cars.includes(carSearch)) {
+    carCheck();
+    carName = carSearch;
+    carSearch = carSearch.replace(/[\W,\s]/g, '').toLowerCase();
+    imgLocation.src = carSearch + ".png";
     showLocation();
-  } else if (carSearch == "volkswagen" || carSearch == "volkswagentouaregr50" || carSearch == "volkswagentouareg" || carSearch == "volkswagenr50") {
-    carName = "Volkswagen Touareg R50";
-    imgLocation.src = "Volkswagen.png";
+  } else if (!cars.includes(carSearch) && document.querySelectorAll("li").length >= 1) {
+    carCheck();
+    lastResortCar = document.querySelectorAll("li")[0].innerHTML;
+    carName = lastResortCar;
+    lastResortCar = lastResortCar.replace(/[\W,\s]/g, '').toLowerCase();
+    imgLocation.src = lastResortCar + ".png";
     showLocation();
-  } else if (carSearch == "audis8" || carSearch == "s8") {
-    carName = "Audi S8";
-    imgLocation.src = "AudiS8.png";
-    showLocation();
-  } else if (carSearch == "apollos" || carSearch == "apollo") {
-    carName = "Apollo S";
-    imgLocation.src = "ApolloS.png";
-    showLocation();
-  } else if (carSearch == "fordgt" || carSearch == "2017fordgt") {
-    carName = "Ford GT";
-    imgLocation.src = "FordGT.png";
-    showLocation();
-  } else if (carSearch == "2007hyundaielantra" || carSearch == "hyundaielantra" || carSearch == "elantra") {
-    carName = "2007 Hyundai Elantra";
-    imgLocation.src = "HyundaiElantra.png";
-    showLocation();
-  } else if (carSearch == "ducati999" || carSearch == "ducati" || carSearch == "ducati999rockford") {
-    carName = "Ducati 999";
-    imgLocation.src = "Ducati999Rock.png";
-    showLocation();
-    window.alert("This vehicle has two locations. If you are looking for the location in Elysian Island, please search 'Ducati Elysian'");
-  } else if (carSearch == "ducatielysian" || carSearch == "ducati999elysian") {
-    carName = "Ducati 999";
-    imgLocation.src = "Ducati999Elysian.png";
-    showLocation();
-  } else if (carSearch == "tmax" || carSearch == "tmax530") {
-    carName = "T-Max 530";
-    imgLocation.src = "TMax.png";
-    showLocation();
-  } else if (carSearch == "fordgt40" || carSearch == "gt40" || carSearch == "bmw750il" || carSearch == "bmw750") {
-    if (carSearch == "fordgt40" || carSearch == "gt40") {
-      carName = "Ford GT40";
-    } else {
-      carName = "BMW 750IL";
-    }
-
-    imgLocation.src = "FordGT40.png";
-    showLocation();
-  } else if (carSearch == "porschespeedster" || carSearch == "2020porschespeedster" || carSearch == "speedster") {
-    carName = "2020 Porsche Speedster";
-    imgLocation.src = "PorscheSpeedster.png";
-    showLocation();
-  } else if (carSearch == "ferrari812superfast" || carSearch == "ferrari812" || carSearch == "812" || carSearch == "superfast" || carSearch == "porschecaymangt4" || carSearch == "porschecayman" || carSearch == "porschegt4" || carSearch == "gt4") {
-    if (carSearch == "ferrari812superfast" || carSearch == "ferrari812" || carSearch == "812" || carSearch == "superfast") {
-      carName = "Ferrari 812 Superfast";
-    } else {
-      carName = "Porsche Cayman GT4";
-    }
-
-    imgLocation.src = "Ferrari812.png";
-    showLocation();
-  } else if (carSearch == "dodgecharger" || carSearch == "charger" || carSearch == "2016dodgecharger") {
-    carName = "2016 Dodge Charger";
-    imgLocation.src = "DodgeCharger.png";
-    showLocation();
-  } else if (carSearch == "holdenmonaro" || carSearch == "holden" || carSearch == "monaro") {
-    carName = "Holden Monaro";
-    imgLocation.src = "HoldenMonaro.png";
-    showLocation();
-  } else if (carSearch == "w202" || carSearch == "202") {
-    carName = "W202";
-    imgLocation.src = "W202.png";
-    showLocation();
-  } else if (carSearch == "fz50") {
-    carName = "FZ50";
-    imgLocation.src = "FZ50.png";
-    showLocation();
-  } else if (carSearch == "peugeot406" || carSearch == "peugeot") {
-    carName = "Peugeot 406";
-    imgLocation.src = "Peugeot406.png";
-    showLocation();
-  } else if (carSearch == "ktmexc530" || carSearch == "ktm" || carSearch == "exc530") {
-    carName = "KTM EXC530";
-    imgLocation.src = "KTMEXC530.png";
-    showLocation();
-  } else if (carSearch == "challenger" || carSearch == "dodgechallenger") {
-    carName = "Challenger";
-    imgLocation.src = "Challenger.png";
-    showLocation();
-    window.alert("there are two challengers, if you're looking for the 2016 Dodge Challenger in La Puerta / Bay city Ave please search '2016 Challenger'");
-  } else if (carSearch == "2016challenger" || carSearch == "2016dodgechallenger") {
-    carName = "2016 Dodge Challenger";
-    imgLocation.src = "2016Challenger.png";
-    showLocation();
-  } else if (carSearch == "2018rs3" || carSearch == "rs3") {
-    carName = "2018 RS3";
-    imgLocation.src = "2018RS3.png";
-    showLocation();
-  } else if (carSearch == "mercedess65amg" || carSearch == "s65" || carSearch == "mercedess65") {
-    carName = "Mercedes S65 AMG";
-    imgLocation.src = "MercedesS65AMG.png";
-    showLocation();
-  } else if (carSearch == "fordexplorerst" || carSearch == "fordexplorer" || carSearch == "explorer") {
-    carName = "Ford Explorer ST";
-    imgLocation.src = "FordExplorerST.png";
-    showLocation();
-  } else if (carSearch == "hyundaii30n" || carSearch == "i30n") {
-    carName = "Hyundai i30N";
-    imgLocation.src = "Hyundaii30N.png";
-    showLocation();
-  } else if (carSearch == "w201" || carSearch == "201" || carSearch == "nissantitan17" || carSearch == "nissantitan" || carSearch == "titan" || carSearch == "titan17") {
-    if (carSearch == "w201" || carSearch == "201") {
-      carName = "W201";
-      imgLocation.src = "W201.png";
-    } else {
-      carName = "nissantitan17";
-      imgLocation.src = "nissantitan17.png";
-    }
-
-    showLocation();
-  } else if (carSearch == "nissangtrr35" || carSearch == "nissangtr" || carSearch == "gtrr35" || carSearch == "r35" || carSearch == "gtr") {
-    carName = "Nissan GTR R35";
-    imgLocation.src = "NissanGTRR35.png";
-    showLocation();
-  } else if (carSearch == "fordfestiva" || carSearch == "festiva") {
-    carName = "Ford Festiva";
-    imgLocation.src = "FordFestiva.png";
-    showLocation();
-  } else if (carSearch == "nissanpatrolsafari" || carSearch == "nissanpatrol" || carSearch == "patrolsafari" || carSearch == "patrol" || carSearch == "safari") {
-    carName = "Nissan Patrol Safari";
-    imgLocation.src = "NissanPatrolSafari.png";
-    showLocation();
-  } else if (carSearch == "1952hudsonhornet" || carSearch == "hudsonhornet" || carSearch == "hudson" || carSearch == "hornet" || carSearch == "1952hudson") {
-    carName = "1952 Hudson Hornet";
-    imgLocation.src = "1952HudsonHornet.png";
-    showLocation();
-  } else if (carSearch == "mercedesunimog" || carSearch == "unimog") {
-    carName = "Mercedes Unimog";
-    imgLocation.src = "MercedesUnimog.png";
-    showLocation();
-  } else if (carSearch == "chevyblazerk5" || carSearch == "blazerk5" || carSearch == "blazer" || carSearch == "k5" || carSearch == "chevyk5") {
-    carName = "Chevy Blazer K5";
-    imgLocation.src = "ChevyBlazerK5.png";
-    showLocation();
-  } else if (carSearch == "1990chevycamaro" || carSearch == "1990chevy" || carSearch == "1990" || carSearch == "chevycamaro" || carSearch == "camaro") {
-    carName = "1990 Chevy Camaro";
-    imgLocation.src = "1990ChevyCamaro.png";
-    showLocation();
-  } else if (carSearch == "suzukihayabusa" || carSearch == "suzuki" || carSearch == "hayabusa") {
-    carName = "Suzuki Hayabusa";
-    imgLocation.src = "SuzukiHayabusa.png";
-    showLocation();
-  } else if (carSearch == "renaulttwingo" || carSearch == "renault" || carSearch == "twingo") {
-    carName = "Renault Twingo";
-    imgLocation.src = "RenaultTwingo.png";
-    showLocation();
-  } else if (carSearch == "genesiscoupe" || carSearch == "genesis" || carSearch == "coupe") {
-    carName = "Genesis Coupe";
-    imgLocation.src = "GenesisCoupe.png";
-    showLocation();
-  } else if (carSearch == "alfaromeogiulia" || carSearch == "romeogiulia" || carSearch == "giulia" || carSearch == "alfaromeo" || carSearch == "alfa" || carSearch == "romeo") {
-    carName = "Alfa Romeo Giulia";
-    imgLocation.src = "AlfaRomeoGiulia.png";
-    showLocation();
-  } else if (carSearch == "2018fordmustanggt" || carSearch == "fordmustanggt" || carSearch == "fordmustang" || carSearch == "mustanggt" || carSearch == "mustang") {
-    carName = "2018 Ford Mustang GT";
-    imgLocation.src = "2018FordMustangGT.png";
-    showLocation();
-  } // code grabbers
-  else if (carSearch == "lamborghinimurcielago" || carSearch == "murcielago") {
-      carName = "Lamborghini Murcielago";
-      imgLocation.src = "LamborghiniMurcielago.png";
-      showLocation();
-      window.alert("!This car requires a code grabber!");
-    } else if (carSearch == "astonmartinvanquish" || carSearch == "astonmartin" || carSearch == "aston" || carSearch == "martin" || carSearch == "vanquish") {
-      carName = "Aston Martin Vanquish";
-      imgLocation.src = "AstonMartinVanquish.png";
-      showLocation();
-      window.alert("!This car requires a code grabber!");
-    } else if (carSearch == "lamborghinicentenario" || carSearch == "centenario") {
-      carName = "Lamborghini Centenario";
-      imgLocation.src = "LamborghiniCentenario.png";
-      showLocation();
-      window.alert("!This car requires a code grabber!");
-    } else if (carSearch == "ferrarilaferrari" || carSearch == "laferrari") {
-      carName = "Ferrari LaFerrari";
-      imgLocation.src = "FerrariLaFerrari.png";
-      showLocation();
-      window.alert("!This car requires a code grabber!");
-    } else if (carSearch == "porsche911r" || carSearch == "911r") {
-      carName = "Porsche 911R";
-      imgLocation.src = "Porsche911R.png";
-      showLocation();
-      window.alert("!This car requires a code grabber!");
-    } else if (carSearch == "lexuslfa" || carSearch == "lfa") {
-      carName = "Lexus LFA";
-      imgLocation.src = "LexusLFA.png";
-      showLocation();
-      window.alert("!This car requires a code grabber!");
-    } else if (carSearch == "chironsupersport" || carSearch == "chiron" || carSearch == "supersport") {
-      carName = "Chiron Super Sport";
-      imgLocation.src = "ChironSuperSport.png";
-      showLocation();
-      window.alert("!This car requires a code grabber!");
-    } // broken repo's
-    else if (carSearch == "yamahayzf450r" || carSearch == "yamaha" || carSearch == "yzf450r") {
-        carName = "Yamaha YZF450R";
-        imgLocation.src = "YamahaYZF450R.png";
-        showLocation();
-        window.alert("!ThIS REPO IS BROKEN!");
-      } else if (carSearch == "alumicraftclass10" || carSearch == "alumicraft" || carSearch == "class10") {
-        carName = "Alumicraft Class 10";
-        imgLocation.src = "AlumicraftClass10.png";
-        showLocation();
-        window.alert("!ThIS REPO IS BROKEN!");
-      } else {
-        imgLocation.src = "youidiot.png";
-        loadingOverlay.style.display = "block";
-        onError();
-      }
+  } else {
+    imgLocation.src = "youidiot.png";
+    loadingOverlay.style.display = "block";
+    onError();
+  }
 } // checking for possible search errors
 
+
+function carCheck() {
+  userError = document.querySelectorAll("li")[0];
+
+  if (codeGrabbers.includes(carSearch) || codeGrabbers.includes(userError.innerHTML)) {
+    window.alert("This car Requires a Code Grabber!");
+  } else if (codeGrabbers.includes(carSearch) || codeGrabbers.includes(userError.innerHTML)) {
+    window.alert("THIS REPO IS BROKEN!");
+  }
+}
 
 function onError() {
   if (carSearch == "") {
