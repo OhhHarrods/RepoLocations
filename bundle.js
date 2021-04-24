@@ -10382,7 +10382,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var searchBar;
-var photoSwitch;
 var btnSearch;
 var carSearch;
 var imgLocation;
@@ -10395,6 +10394,7 @@ var carsArray;
 var optionCounter;
 var lastResortCar;
 var userError;
+var imgLocationIG;
 var brokenRepos = ["Yamaha YZF450R", "Alumicraft Class 10"];
 var codeGrabbers = ["Lamborghini Murcielago", "Aston Martin Vanquish", "Lamborghini Centenario", "Ferrari LaFerrari", "Porsche 911R", "Lexus LFA", "Chiron Super Sport"];
 var cars = ["Audi A6", "Volkswagen Touareg R50", "Audi S8", "Apollo S", "Ford GT", "2007 Hyundai Elantra", "Ducati 999", "Ducati Elysian", "T-Max 530", "Ford GT40", "BMW 750IL", "2020 Porsche Speedster", "Ferrari 812 Superfast", "Porsche Cayman GT4", "2016 Dodge Charger", "Holden Monaro", "W202", "FZ50", "Peugeot 406", "KTM EXC530", "Challenger", "2016 Dodge Challenger", "2018 RS3", "Mercedes S65 AMG", "Ford Explorer ST", "Hyundai i30N", "W201", "nissantitan17", "Nissan GTR R35", "Ford Festiva", "Nissan Patrol Safari", "1952 Hudson Hornet", "Mercedes Unimog", "Chevy Blazer K5", "1990 Chevy Camaro", "Suzuki Hayabusa", "Renault Twingo", "Genesis Coupe", "Alfa Romeo Giulia", "2018 Ford Mustang GT", "Lamborghini Murcielago", "Aston Martin Vanquish", "Lamborghini Centenario", "Ferrari LaFerrari", "Porsche 911R", "Lexus LFA", "Chiron Super Sport", "Yamaha YZF450R", "Alumicraft Class 10"];
@@ -10422,6 +10422,7 @@ function searchVehicle() {
     carName = carSearch;
     carSearch = carSearch.replace(/[\W,\s]/g, '').toLowerCase();
     imgLocation.src = carSearch + ".png";
+    imgLocationIG.src = carSearch + "ingame.png";
     showLocation();
   } else if (!cars.includes(carSearch) && document.querySelectorAll("li").length >= 1) {
     carCheck();
@@ -10429,6 +10430,7 @@ function searchVehicle() {
     carName = lastResortCar;
     lastResortCar = lastResortCar.replace(/[\W,\s]/g, '').toLowerCase();
     imgLocation.src = lastResortCar + ".png";
+    imgLocationIG.src = carSearch + "ingame.png";
     showLocation();
   } else {
     imgLocation.src = "youidiot.png";
@@ -10441,9 +10443,9 @@ function searchVehicle() {
 function carCheck() {
   userError = document.querySelectorAll("li")[0];
 
-  if (codeGrabbers.includes(carSearch) || codeGrabbers.includes(userError.innerHTML)) {
+  if (codeGrabbers.includes(carSearch)) {
     window.alert("This car Requires a Code Grabber!");
-  } else if (codeGrabbers.includes(carSearch) || codeGrabbers.includes(userError.innerHTML)) {
+  } else if (brokenRepos.includes(carSearch)) {
     window.alert("THIS REPO IS BROKEN!");
   }
 }
@@ -10464,10 +10466,10 @@ function onError() {
 
 function showLocation() {
   document.querySelector("ul").innerHTML = "";
-  checkPhoto();
   car.innerHTML = "Car: " + carName;
   searchBar.value = "";
   imgLocation.style.display = "flex";
+  imgLocationIG.style.display = "flex";
   load();
 } // creating search options
 
@@ -10482,19 +10484,6 @@ function suggestedSearch(carsArray) {
   } else {
     document.querySelector('ul').innerHTML = html;
   }
-} // checking if the in game / map switch has been toggled on/off
-
-
-function checkPhoto() {
-  imgLocation.loading = "lazy";
-
-  if (photoSwitch.checked) {
-    imgLocation.src = imgLocation.src.replace(".png", "ingame.png");
-  } else {
-    imgLocation.src = imgLocation.src.replace("ingame.png", ".png");
-  }
-
-  load();
 } // displaying all worthy search options based on entered text
 
 
@@ -10531,14 +10520,13 @@ function main() {
   loadingOverlay = document.querySelector(".loading-overlay");
   audio = new Audio('idiot.mp3');
   car = document.getElementById("car");
-  photoSwitch = document.querySelector('input[type="checkbox"]');
   imgLocation = document.getElementById("imgLocation");
+  imgLocationIG = document.getElementById("imgLocationIG");
   searchBar = document.getElementById("searchBar");
   carOptions = document.getElementById("carOptions");
   btnSearch = document.getElementById("btnSearch"); // setup event listeners
 
   searchBar.addEventListener("input", searchOptions);
-  photoSwitch.addEventListener("change", checkPhoto);
   btnSearch.addEventListener("click", searchVehicle); // using an already created enter search function (in Toolkit.js)
 
   Object(_Toolkit_js__WEBPACK_IMPORTED_MODULE_2__["addKey"])(searchVehicle); // enter key search
