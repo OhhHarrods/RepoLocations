@@ -10430,7 +10430,7 @@ function searchVehicle() {
     carName = lastResortCar;
     lastResortCar = lastResortCar.replace(/[\W,\s]/g, '').toLowerCase();
     imgLocation.src = lastResortCar + ".png";
-    imgLocationIG.src = carSearch + "ingame.png";
+    imgLocationIG.src = lastResortCar + "ingame.png";
     showLocation();
   } else {
     imgLocation.src = "youidiot.png";
